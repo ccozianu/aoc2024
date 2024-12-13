@@ -18,7 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.StreamSupport;
 
-import aoc29024.util.ImmutablePoint;
+import aoc29024.util.IntPair;
 
 
 public class Program10Part2 {
@@ -55,11 +55,11 @@ public class Program10Part2 {
 	private static long scoreForSource(long[][] input, int i, int j) {
 		int ROWS = input.length;
 		int COLS = input[0].length;
-		HashMap<ImmutablePoint,Long> currentSet = new HashMap<>();
-		currentSet.put(new ImmutablePoint(i, j),1l);
+		HashMap<IntPair,Long> currentSet = new HashMap<>();
+		currentSet.put(new IntPair(i, j),1l);
 		for (int step=0; step<9;step++) {
-			HashMap<ImmutablePoint,Long> nextSet = new HashMap<>();
-			for(Map.Entry<ImmutablePoint,Long> p: currentSet.entrySet()) {
+			HashMap<IntPair,Long> nextSet = new HashMap<>();
+			for(Map.Entry<IntPair,Long> p: currentSet.entrySet()) {
 				for (var nextP: neighborsOf(p.getKey())) {
 					if (checkWithinBounds(nextP, ROWS, COLS) && (input[p.getKey().X][p.getKey().Y] + 1== input[nextP.X][nextP.Y])) {
 						nextSet.merge(nextP, p.getValue(), (Long x,Long y)-> x+y);
@@ -81,17 +81,17 @@ public class Program10Part2 {
 
 
 
-	private static boolean checkWithinBounds(ImmutablePoint nextPoint, int rows, int cols) {
+	private static boolean checkWithinBounds(IntPair nextPoint, int rows, int cols) {
 		return nextPoint.X>=0 && nextPoint.X<rows && nextPoint.Y >=0 && nextPoint.Y < cols;
 	}
 
 
 
 
-	private static ImmutablePoint[] neighborsOf(ImmutablePoint p) {
-		return new ImmutablePoint[] {
-				new ImmutablePoint(p.X,p.Y+1),new ImmutablePoint(p.X,p.Y-1),
-				new ImmutablePoint(p.X+1,p.Y),new ImmutablePoint(p.X-1,p.Y),
+	private static IntPair[] neighborsOf(IntPair p) {
+		return new IntPair[] {
+				new IntPair(p.X,p.Y+1),new IntPair(p.X,p.Y-1),
+				new IntPair(p.X+1,p.Y),new IntPair(p.X-1,p.Y),
 		};
 	}
 

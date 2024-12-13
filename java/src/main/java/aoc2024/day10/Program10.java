@@ -18,7 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.StreamSupport;
 
-import aoc29024.util.ImmutablePoint;
+import aoc29024.util.IntPair;
 
 
 public class Program10 {
@@ -56,10 +56,10 @@ public class Program10 {
 		int ROWS = input.length;
 		int COLS = input[0].length;
 		long result = 0;
-		HashSet<ImmutablePoint> currentSet = new HashSet<ImmutablePoint>();
-		currentSet.add(new ImmutablePoint(i, j));
+		HashSet<IntPair> currentSet = new HashSet<IntPair>();
+		currentSet.add(new IntPair(i, j));
 		for (int step=0; step<9;step++) {
-			HashSet<ImmutablePoint> nextSet = new HashSet<>();
+			HashSet<IntPair> nextSet = new HashSet<>();
 			for(var p: currentSet) {
 				for (var nextP: neighborsOf(p)) {
 					if (checkWithinBounds(nextP, ROWS, COLS) && (input[p.X][p.Y] == input[nextP.X][nextP.Y] + 1)) {
@@ -78,17 +78,17 @@ public class Program10 {
 
 
 
-	private static boolean checkWithinBounds(ImmutablePoint nextPoint, int rows, int cols) {
+	private static boolean checkWithinBounds(IntPair nextPoint, int rows, int cols) {
 		return nextPoint.X>=0 && nextPoint.X<rows && nextPoint.Y >=0 && nextPoint.Y < cols;
 	}
 
 
 
 
-	private static ImmutablePoint[] neighborsOf(ImmutablePoint p) {
-		return new ImmutablePoint[] {
-				new ImmutablePoint(p.X,p.Y+1),new ImmutablePoint(p.X,p.Y-1),
-				new ImmutablePoint(p.X+1,p.Y),new ImmutablePoint(p.X-1,p.Y),
+	private static IntPair[] neighborsOf(IntPair p) {
+		return new IntPair[] {
+				new IntPair(p.X,p.Y+1),new IntPair(p.X,p.Y-1),
+				new IntPair(p.X+1,p.Y),new IntPair(p.X-1,p.Y),
 		};
 	}
 

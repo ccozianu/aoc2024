@@ -1,9 +1,9 @@
 package aoc29024.util;
 
-public class ImmutablePoint {
+public class IntPair {
 	public final int X;
 	public final int Y;
-	public ImmutablePoint(int x, int y) {
+	public IntPair(int x, int y) {
 		this.X = x;
 		this.Y = y;
 	}
@@ -11,9 +11,9 @@ public class ImmutablePoint {
 	@Override
 	public boolean equals(Object obj) {
 		return obj != null
-				&& obj instanceof ImmutablePoint
-				&& this.X == ((ImmutablePoint) obj).X 
-				&& this.Y == ((ImmutablePoint) obj).Y;
+				&& obj instanceof IntPair
+				&& this.X == ((IntPair) obj).X 
+				&& this.Y == ((IntPair) obj).Y;
 	}
 	
 	@Override
