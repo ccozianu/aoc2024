@@ -1,4 +1,4 @@
-package aoc29024.util;
+package aoc2024.util;
 
 public class IntPair {
 	public final int X;
@@ -25,4 +25,5 @@ public class IntPair {
 	public String toString() {
 		return "("+X+','+Y+")";
 	}
+
 }

@@ -1,4 +1,4 @@
-package aoc29024.util;
+package aoc2024.util;
 
 public class LongPair {
 	public final long X;

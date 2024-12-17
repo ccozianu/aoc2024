@@ -18,7 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.StreamSupport;
 
-import aoc29024.util.IntPair;
+import aoc2024.util.IntPair;
 
 
 public class Program10Part2 {

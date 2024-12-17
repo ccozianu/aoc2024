@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
 import java.util.stream.StreamSupport;
 
 import aoc2024.day08.Program08;
-import aoc29024.util.IntPair;
+import aoc2024.util.IntPair;
 
 
 public class Program11 {
