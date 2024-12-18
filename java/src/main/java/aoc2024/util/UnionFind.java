@@ -1,5 +1,6 @@
 package aoc2024.util;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,12 +15,16 @@ public class UnionFind {
 	public static class Builder {
 		
 		private final int[] backingArray;
+		private final int[] classSizes;
+		private int MAX_CLASS_SIZE=1;
 
 		public Builder(int n) {
 			this.backingArray = new int[n];
 			for(int i=0; i<n; i++) {
 				this.backingArray[i] = i;
 			}
+			this.classSizes = new int[n];
+			Arrays.fill(this.classSizes, 1);
 		}
 		
 		private int classOf(int i) {
@@ -33,8 +38,27 @@ public class UnionFind {
 			
 		}
 		
+		/**
+		 * We want to maintains ome class size information and max class size
+		 * only in order to support day 14
+		 * @param i
+		 * @param j
+		 */
 		public void unite(int i, int j) {
-			backingArray[classOf(i)] = classOf(j);
+			int iClass = classOf(i);
+			int jClass = classOf(j);
+			if (iClass != jClass) {
+				int iSize = classSizes[iClass];
+				backingArray[iClass] = jClass;
+				classSizes[jClass] += iSize;
+				if (classSizes[jClass] > MAX_CLASS_SIZE) {
+					MAX_CLASS_SIZE = classSizes[jClass];
+				}
+			}
+		}
+		
+		public int getMaxClassSize() {
+			return MAX_CLASS_SIZE;
 		}
 		
 		public UnionFind build() {
