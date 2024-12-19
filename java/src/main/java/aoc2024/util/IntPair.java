@@ -26,4 +26,12 @@ public class IntPair {
 		return "("+X+','+Y+")";
 	}
 
+	public IntPair moveBy(IntPair dir) {
+		return new IntPair(X+dir.X, Y + dir.Y);
+	}
+
+	public IntPair opposite() {
+		return new IntPair(-X,-Y);
+	}
+
 }
