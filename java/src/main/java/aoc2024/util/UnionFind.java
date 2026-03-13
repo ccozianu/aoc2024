@@ -56,6 +56,10 @@ public class UnionFind {
 				}
 			}
 		}
+
+        public boolean areEquivalentSoFar(int i, int j) {
+        	return classOf(i) == classOf(j);
+        }
 		
 		public int getMaxClassSize() {
 			return MAX_CLASS_SIZE;
